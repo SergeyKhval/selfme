@@ -1,9 +1,23 @@
-/* Exports all the actions from a single point.
+export function createStream() {
+  const constraints = {
+    audio: false,
+    video: true
+  };
 
-Allows to import actions like so:
+  return dispatch => {
+    function handleSuccess(stream) {
+      dispatch({
+        type: 'SET_STREAM',
+        payload: stream
+      });
+    }
 
-import {action1, action2} from '../actions/'
-*/
-/* Populated by react-webpack-redux:action */
-const actions = {};
-module.exports = actions;
+    function handleError(e) {
+      console.error(`Error with getting user media: ${e}`);
+    }
+
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then(handleSuccess)
+      .catch(handleError);
+  };
+}

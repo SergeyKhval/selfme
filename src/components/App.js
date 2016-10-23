@@ -1,23 +1,21 @@
-import React from 'react';
-import './app.css';
+import React, {Component, PropTypes} from 'react';
 
-const yeomanImage = require('../images/yeoman.png');
-
-class AppComponent extends React.Component {
-
+class AppComponent extends Component {
   render() {
+    if (this.props.stream) {
+      document.querySelector('video').srcObject = this.props.stream.stream;
+    }
     return (
       <div className="index">
-        <img src={yeomanImage} alt="Yeoman Generator" />
-        <div className="notice">
-          Please edit <code>src/components/App.js</code> to get started!
-        </div>
+        <video autoPlay/>
+        <button>Take a picture</button>
       </div>
     );
   }
 }
 
-AppComponent.defaultProps = {
+AppComponent.propTypes = {
+  stream: PropTypes.object.isRequired
 };
 
 export default AppComponent;
