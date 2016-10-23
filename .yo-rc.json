@@ -1,6 +1,9 @@
 {
-  "generator-mocha": {
-    "ui": "bdd",
-    "rjs": false
+  "generator-react-webpack": {
+    "appName": "capstone",
+    "style": "scss",
+    "cssmodules": true,
+    "postcss": true,
+    "generatedWithVersion": 4
   }
 }
