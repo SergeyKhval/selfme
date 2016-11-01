@@ -24,7 +24,7 @@ App.propTypes = {
 
 function mapStateToProps(state) { // eslint-disable-line no-unused-vars
   return {
-    stream: state.stream
+    stream: state.streamReducer
   };
 }
 function mapDispatchToProps(act) {

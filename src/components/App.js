@@ -1,10 +1,20 @@
 import React, {Component, PropTypes} from 'react';
 
 class AppComponent extends Component {
-  render() {
-    if (this.props.stream) {
-      document.querySelector('video').srcObject = this.props.stream.stream;
+  componentDidUpdate() {
+    this.setVideoStream();
+  }
+
+  setVideoStream() {
+    const video = document.querySelector('video');
+    const {stream} = this.props.stream;
+
+    if (stream) {
+      video.srcObject = stream;
     }
+  }
+
+  render() {
     return (
       <div className="index">
         <video autoPlay/>

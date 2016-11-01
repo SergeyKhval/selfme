@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
-import stream from './stream';
+import streamReducer from './stream';
 
 export default combineReducers({
-  stream
+  streamReducer
 });
