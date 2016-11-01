@@ -1,7 +1,14 @@
 export function createStream() {
   const constraints = {
     audio: false,
-    video: true
+    video: {
+      width: {
+        exact: window.innerWidth
+      },
+      height: {
+        exact: window.innerHeight
+      }
+    }
   };
 
   return dispatch => {

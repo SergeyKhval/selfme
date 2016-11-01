@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
+import './app.scss';
+
 class AppComponent extends Component {
   componentDidUpdate() {
     this.setVideoStream();
@@ -16,7 +18,7 @@ class AppComponent extends Component {
 
   render() {
     return (
-      <div className="index">
+      <div className="container">
         <video autoPlay/>
         <button>Take a picture</button>
       </div>

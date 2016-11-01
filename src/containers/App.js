@@ -7,6 +7,8 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Main from '../components/App';
 
+import './app.scss';
+
 class App extends Component {
   componentWillMount() {
     this.props.actions.createStream();
