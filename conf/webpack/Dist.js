@@ -5,6 +5,7 @@
  * final output when running npm run dist.
  */
 const webpack = require('webpack');
+const OfflinePlugin = require('offline-plugin');
 const WebpackBaseConfig = require('./Base');
 
 class WebpackDistConfig extends WebpackBaseConfig {
@@ -20,7 +21,12 @@ class WebpackDistConfig extends WebpackBaseConfig {
         }),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new OfflinePlugin({
+          ServiceWorker: {
+            events: true
+          }
+        })
       ]
     };
   }

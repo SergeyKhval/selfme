@@ -7,6 +7,7 @@
   "scripts": {
     "clean": "rimraf dist/*",
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
+    "deploy": "gh-pages -d dist",
     "dist": "npm run clean && npm run copy && webpack --progress --bail --env dist -p",
     "lint": "eslint ./src",
     "posttest": "npm run lint",
@@ -43,6 +44,7 @@
     "eslint-plugin-jsx-a11y": "^1.0.0",
     "eslint-plugin-react": "^5.0.0",
     "file-loader": "^0.9.0",
+    "gh-pages": "^0.11.0",
     "isparta-loader": "^2.0.0",
     "karma": "^1.0.0",
     "karma-chai": "^0.1.0",
@@ -57,6 +59,7 @@
     "mocha": "^2.4.5",
     "node-sass": "^3.7.0",
     "null-loader": "^0.1.1",
+    "offline-plugin": "^3.4.2",
     "phantomjs-prebuilt": "^2.1.7",
     "postcss": "^5.0.21",
     "postcss-loader": "^0.9.1",
