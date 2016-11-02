@@ -23,6 +23,10 @@ class WebpackDistConfig extends WebpackBaseConfig {
         new webpack.optimize.AggressiveMergingPlugin(),
         new webpack.NoErrorsPlugin(),
         new OfflinePlugin({
+          publicPath: '/selfme/',
+          caches: {
+            main: ['index.html', 'app.js']
+          },
           ServiceWorker: {
             events: true
           }
