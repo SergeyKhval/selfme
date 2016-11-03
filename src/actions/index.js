@@ -20,7 +20,16 @@ export function createStream() {
     }
 
     function handleError(e) {
-      console.error(`Error with getting user media: ${e}`);
+      switch (e.name) {
+        case 'DevicesNotFoundError':
+          dispatch({
+            type: 'ERROR',
+            payload: 'Could not find device camera'
+          });
+          break;
+        default:
+          return;
+      }
     }
 
     navigator.mediaDevices.getUserMedia(constraints)

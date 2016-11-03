@@ -15,18 +15,20 @@ class App extends Component {
   }
 
   render() {
-    return <Main stream={this.props.stream}/>;
+    return <Main stream={this.props.stream} error={this.props.error}/>;
   }
 }
 
 App.propTypes = {
   actions: PropTypes.object.isRequired,
-  stream: PropTypes.object
+  stream: PropTypes.object,
+  error: PropTypes.object
 };
 
 function mapStateToProps(state) { // eslint-disable-line no-unused-vars
   return {
-    stream: state.streamReducer
+    stream: state.streamReducer,
+    error: state.errorsReducer
   };
 }
 function mapDispatchToProps(act) {

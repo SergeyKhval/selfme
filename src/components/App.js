@@ -17,8 +17,11 @@ class AppComponent extends Component {
   }
 
   render() {
+    const {error} = this.props.error;
+
     return (
       <div className="container">
+        <p>{error}</p>
         <video autoPlay/>
         <button>Take a picture</button>
       </div>
@@ -27,7 +30,8 @@ class AppComponent extends Component {
 }
 
 AppComponent.propTypes = {
-  stream: PropTypes.object.isRequired
+  stream: PropTypes.object.isRequired,
+  error: PropTypes.object
 };
 
 export default AppComponent;
