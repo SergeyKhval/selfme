@@ -19,11 +19,13 @@ class AppComponent extends Component {
   render() {
     const {error} = this.props.error;
 
+    const errorTemplate = error ? '<p>{error}</p>' : '';
+
     return (
       <div className="container">
-        <p>{error}</p>
+        {errorTemplate}
         <video autoPlay/>
-        <button>Take a picture</button>
+        <button><i className="fa fa-camera" /></button>
       </div>
     );
   }

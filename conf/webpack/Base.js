@@ -152,7 +152,7 @@ class WebpackBaseConfig {
             ]
           },
           {
-            test: /\.(png|jpg|gif|mp4|ogg|svg|woff|woff2)$/,
+            test: /\.(png|jpg|gif|mp4|ogg|svg|woff|woff2|ttf|otf|eot)$/,
             loaders: ['file']
           },
           {
@@ -170,9 +170,9 @@ class WebpackBaseConfig {
         ]
       },
       output: {
-        path: path.resolve('./dist'),
+        path: path.resolve('./dist/assets'),
         filename: 'app.js',
-        publicPath: '/selfme'
+        publicPath: './assets/'
       },
       plugins: [],
       resolve: {
