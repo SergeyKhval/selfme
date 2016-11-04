@@ -16,6 +16,16 @@ class AppComponent extends Component {
     }
   }
 
+  handleButtonClick() {
+    const video = document.querySelector('video');
+    const canvas = document.querySelector('canvas');
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+  }
+
   render() {
     const {error} = this.props.error;
 
@@ -25,7 +35,8 @@ class AppComponent extends Component {
       <div className="container">
         {errorTemplate}
         <video autoPlay/>
-        <button><i className="fa fa-camera" /></button>
+        <button onClick={this.handleButtonClick}><i className="fa fa-camera"/></button>
+        <canvas />
       </div>
     );
   }
