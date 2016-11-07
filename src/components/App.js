@@ -27,7 +27,7 @@ class AppComponent extends Component {
 
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    this.props.setSource(canvas.toDataURL());
+    this.props.setSource(canvas);
   }
 
   handleBackClick() {
@@ -38,7 +38,7 @@ class AppComponent extends Component {
     const img = new Image();
     const canvas = document.querySelector('canvas');
 
-    img.src = this.props.source.source;
+    img.src = this.props.source.png;
 
     this.props.filter.filter.reset();
     this.props.filter.filter.addFilter('sepia');
@@ -72,6 +72,13 @@ class AppComponent extends Component {
           className={editorMode ? 'hidden' : 'button-shot'}>
           <i className="fa fa-camera"/>
         </button>
+
+        <a
+          href={this.props.source.png}
+          download="canvas.png"
+          className={editorMode ? 'button-save' : 'hidden'}>
+          <i className="fa fa-floppy-o" aria-hidden="true"/>
+        </a>
       </div>
     );
   }

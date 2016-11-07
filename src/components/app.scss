@@ -12,7 +12,8 @@ $fa-font-path: "~font-awesome/fonts";
   display: none;
 }
 
-.button-shot {
+.button-shot,
+.button-save {
   font-size: 2rem;
   background-color: $brand-danger;
 
@@ -39,13 +40,19 @@ $fa-font-path: "~font-awesome/fonts";
   }
 }
 
+.button-save {
+  color: black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .button-back {
   color: white;
   font-size: 2rem;
-  text-shadow: 0 1px black,
-               0 -1px black,
-               1px 0 black,
-               -1px 0 black;
+  text-shadow: 0 1px black,  0 -1px black,  1px 0 black,  -1px 0 black;
 
   background-color: transparent;
 

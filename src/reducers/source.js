@@ -5,7 +5,7 @@ export default function (state = initialState, action) {
     case 'SET_SOURCE':
       return {
         ...state,
-        source: action.payload
+        png: action.payload.png
       };
     default:
       return {

@@ -57,11 +57,13 @@ export function toggleEditorMode(mode) {
  * @param source
  * @returns {function(*)}
  */
-export function setSource(source) {
+export function setSource(canvas) {
   return dispatch => {
     dispatch({
       type: 'SET_SOURCE',
-      payload: source
+      payload: {
+        png: canvas.toDataURL('image/png')
+      }
     });
   };
 }
