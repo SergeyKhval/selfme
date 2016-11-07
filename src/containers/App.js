@@ -14,6 +14,10 @@ class App extends Component {
     this.props.actions.createStream();
   }
 
+  componentDidMount() {
+    window.addEventListener('resize', this.props.actions.createStream);
+  }
+
   render() {
     const {toggleEditorMode} = this.props.actions;
 
