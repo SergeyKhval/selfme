@@ -1,13 +1,11 @@
-const initialState = {
-  editorMode: false
-};
+const initialState = {};
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case 'TOGGLE_EDITOR_MODE':
+    case 'SET_SOURCE':
       return {
         ...state,
-        editorMode: action.payload
+        source: action.payload
       };
     default:
       return {

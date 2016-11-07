@@ -26,6 +26,8 @@ class AppComponent extends Component {
     this.props.toggleEditor(true);
 
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    this.props.setSource(canvas.toDataURL());
   }
 
   handleBackClick() {
@@ -33,7 +35,17 @@ class AppComponent extends Component {
   }
 
   handleAddFilterClick() {
-    this.props.filter.filter.addFilter('brightness', 1);
+    const img = new Image();
+    const canvas = document.querySelector('canvas');
+
+    img.src = this.props.source.source;
+
+    this.props.filter.filter.reset();
+    this.props.filter.filter.addFilter('sepia');
+
+    const filteredImg = this.props.filter.filter.apply(img);
+
+    canvas.getContext('2d').drawImage(filteredImg, 0, 0);
   }
 
   render() {
@@ -68,9 +80,11 @@ class AppComponent extends Component {
 AppComponent.propTypes = {
   ui: PropTypes.object,
   stream: PropTypes.object.isRequired,
+  source: PropTypes.object,
   error: PropTypes.object,
   filter: PropTypes.object,
-  toggleEditor: PropTypes.func
+  toggleEditor: PropTypes.func,
+  setSource: PropTypes.func
 };
 
 export default AppComponent;

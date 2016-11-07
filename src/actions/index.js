@@ -47,7 +47,21 @@ export function toggleEditorMode(mode) {
   return dispatch => {
     dispatch({
       type: 'TOGGLE_EDITOR_MODE',
-      payload: {editorMode: mode}
+      payload: mode
+    });
+  };
+}
+
+/**
+ * Store reference to image taken with camera
+ * @param source
+ * @returns {function(*)}
+ */
+export function setSource(source) {
+  return dispatch => {
+    dispatch({
+      type: 'SET_SOURCE',
+      payload: source
     });
   };
 }

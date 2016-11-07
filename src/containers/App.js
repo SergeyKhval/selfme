@@ -19,14 +19,16 @@ class App extends Component {
   }
 
   render() {
-    const {toggleEditorMode} = this.props.actions;
+    const {toggleEditorMode, setSource} = this.props.actions;
 
     return (<Main
       stream={this.props.stream}
+      source={this.props.source}
       error={this.props.error}
       ui={this.props.ui}
       filter={this.props.filter}
       toggleEditor={toggleEditorMode}
+      setSource={setSource}
     />);
   }
 }
@@ -34,6 +36,7 @@ class App extends Component {
 App.propTypes = {
   actions: PropTypes.object.isRequired,
   stream: PropTypes.object,
+  source: PropTypes.object,
   error: PropTypes.object,
   filter: PropTypes.object,
   ui: PropTypes.object
@@ -43,6 +46,7 @@ function mapStateToProps(state) {
   return {
     ui: state.uiReducer,
     stream: state.streamReducer,
+    source: state.sourceReducer,
     filter: state.filterReducer,
     error: state.errorsReducer
   };
