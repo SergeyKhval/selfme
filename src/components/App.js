@@ -32,6 +32,10 @@ class AppComponent extends Component {
     this.props.toggleEditor(false);
   }
 
+  handleAddFilterClick() {
+    this.props.filter.filter.addFilter('brightness', 1);
+  }
+
   render() {
     const {error} = this.props.error;
     const {editorMode} = this.props.ui;
@@ -65,6 +69,7 @@ AppComponent.propTypes = {
   ui: PropTypes.object,
   stream: PropTypes.object.isRequired,
   error: PropTypes.object,
+  filter: PropTypes.object,
   toggleEditor: PropTypes.func
 };
 

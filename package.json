@@ -9,6 +9,7 @@
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
     "deploy": "gh-pages -d dist",
     "dist": "npm run clean && npm run copy && webpack --progress --bail --env dist -p",
+    "install": "napa",
     "lint": "eslint ./src",
     "posttest": "npm run lint",
     "release:major": "npm version prerelease && git push --follow-tags && npm publish --tag beta",
@@ -58,6 +59,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "napa": "^2.3.0",
     "node-sass": "^3.7.0",
     "null-loader": "^0.1.1",
     "offline-plugin": "^3.4.2",
@@ -83,5 +85,8 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0"
+  },
+  "napa": {
+    "webgl-image-filter": "phoboslab/WebGLImageFilter"
   }
 }

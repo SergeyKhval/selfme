@@ -25,6 +25,7 @@ class App extends Component {
       stream={this.props.stream}
       error={this.props.error}
       ui={this.props.ui}
+      filter={this.props.filter}
       toggleEditor={toggleEditorMode}
     />);
   }
@@ -34,13 +35,15 @@ App.propTypes = {
   actions: PropTypes.object.isRequired,
   stream: PropTypes.object,
   error: PropTypes.object,
+  filter: PropTypes.object,
   ui: PropTypes.object
 };
 
-function mapStateToProps(state) { // eslint-disable-line no-unused-vars
+function mapStateToProps(state) {
   return {
     ui: state.uiReducer,
     stream: state.streamReducer,
+    filter: state.filterReducer,
     error: state.errorsReducer
   };
 }
