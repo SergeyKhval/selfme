@@ -16,7 +16,7 @@ class AppComponent extends Component {
     }
   }
 
-  handleButtonClick() {
+  handleShotClick() {
     const video = document.querySelector('video');
     const canvas = document.querySelector('canvas');
 
@@ -28,6 +28,10 @@ class AppComponent extends Component {
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
   }
 
+  handleBackClick() {
+    this.props.toggleEditor(false);
+  }
+
   render() {
     const {error} = this.props.error;
     const {editorMode} = this.props.ui;
@@ -37,9 +41,21 @@ class AppComponent extends Component {
     return (
       <div className="container">
         {errorTemplate}
+
+        <button
+          className={editorMode ? 'button-back' : 'hidden'}
+          onClick={::this.handleBackClick}>
+          <i className="fa fa-undo" aria-hidden="true"/>
+        </button>
+
         <video autoPlay className={editorMode ? 'hidden' : ''}/>
-        <button onClick={::this.handleButtonClick}><i className="fa fa-camera"/></button>
-        <canvas />
+        <canvas className={editorMode ? '' : 'hidden'}/>
+
+        <button
+          onClick={::this.handleShotClick}
+          className={editorMode ? 'hidden' : 'button-shot'}>
+          <i className="fa fa-camera"/>
+        </button>
       </div>
     );
   }
