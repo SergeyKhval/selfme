@@ -15,22 +15,32 @@ class App extends Component {
   }
 
   render() {
-    return <Main stream={this.props.stream} error={this.props.error}/>;
+    const {toggleEditorMode} = this.props.actions;
+
+    return (<Main
+      stream={this.props.stream}
+      error={this.props.error}
+      ui={this.props.ui}
+      toggleEditor={toggleEditorMode}
+    />);
   }
 }
 
 App.propTypes = {
   actions: PropTypes.object.isRequired,
   stream: PropTypes.object,
-  error: PropTypes.object
+  error: PropTypes.object,
+  ui: PropTypes.object
 };
 
 function mapStateToProps(state) { // eslint-disable-line no-unused-vars
   return {
+    ui: state.uiReducer,
     stream: state.streamReducer,
     error: state.errorsReducer
   };
 }
+
 function mapDispatchToProps(act) {
   return dispatch => ({actions: bindActionCreators(act, dispatch)});
 

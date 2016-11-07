@@ -37,3 +37,17 @@ export function createStream() {
       .catch(handleError);
   };
 }
+
+/**
+ * Set the mode of the app (camera - false, editor - true)
+ * @param {Boolean} mode
+ * @returns {function(*)}
+ */
+export function toggleEditorMode(mode) {
+  return dispatch => {
+    dispatch({
+      type: 'TOGGLE_EDITOR_MODE',
+      payload: {editorMode: mode}
+    });
+  };
+}

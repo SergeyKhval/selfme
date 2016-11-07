@@ -23,19 +23,22 @@ class AppComponent extends Component {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 
+    this.props.toggleEditor(true);
+
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
   }
 
   render() {
     const {error} = this.props.error;
+    const {editorMode} = this.props.ui;
 
     const errorTemplate = error ? '<p>{error}</p>' : '';
 
     return (
       <div className="container">
         {errorTemplate}
-        <video autoPlay/>
-        <button onClick={this.handleButtonClick}><i className="fa fa-camera"/></button>
+        <video autoPlay className={editorMode ? 'hidden' : ''}/>
+        <button onClick={::this.handleButtonClick}><i className="fa fa-camera"/></button>
         <canvas />
       </div>
     );
@@ -43,8 +46,10 @@ class AppComponent extends Component {
 }
 
 AppComponent.propTypes = {
+  ui: PropTypes.object,
   stream: PropTypes.object.isRequired,
-  error: PropTypes.object
+  error: PropTypes.object,
+  toggleEditor: PropTypes.func
 };
 
 export default AppComponent;

@@ -4,6 +4,12 @@ $fa-font-path: "~font-awesome/fonts";
 
 .container {
   position: relative;
+
+  height: 100%;
+}
+
+.hidden {
+  display: none;
 }
 
 button {
@@ -24,9 +30,11 @@ button {
 
   transition: box-shadow 0.1s ease;
 
-  &:focus {
+  &:active {
     box-shadow: 0 0 0;
+  }
 
+  &:focus {
     outline: none;
   }
 }
