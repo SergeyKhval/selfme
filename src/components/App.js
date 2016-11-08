@@ -70,45 +70,49 @@ class AppComponent extends Component {
       <div className="container">
         {errorTemplate}
 
-        <button
-          className={editorMode ? 'btn btn-back' : 'hidden'}
-          onClick={::this.handleBackClick}>
-          <i className="fa fa-undo" aria-hidden="true"/>
-        </button>
+        <div className="header-buttons">
+          <button
+            className={editorMode ? 'btn btn-back' : 'hidden'}
+            onClick={::this.handleBackClick}>
+            <i className="fa fa-undo" aria-hidden="true"/>
+          </button>
 
-        <button
-          className={(!editorMode && cameras > 1) ? 'btn btn-switch' : 'hidden'}
-          onClick={this.handleCameraToggle}>
-          <i className="fa fa-exchange" aria-hidden="true"/>
-        </button>
+          <button
+            className={(!editorMode && cameras > 1) ? 'btn btn-switch' : 'hidden'}
+            onClick={this.handleCameraToggle}>
+            <i className="fa fa-exchange" aria-hidden="true"/>
+          </button>
+        </div>
 
         <video autoPlay className={editorMode ? 'hidden' : ''}/>
         <canvas className={editorMode ? '' : 'hidden'}/>
 
-        <button
-          onClick={::this.handleShotClick}
-          className={editorMode ? 'hidden' : 'btn btn-shot'}>
-          <i className="fa fa-camera"/>
-        </button>
+        <div className="footer-buttons">
+          <button
+            onClick={::this.handleShotClick}
+            className={editorMode ? 'hidden' : 'btn btn-shot'}>
+            <i className="fa fa-camera"/>
+          </button>
 
-        <button
-          className={editorMode ? 'btn btn-filters' : 'hidden'}
-          onClick={::this.handleFiltersToggle}>
-          <i className="fa fa-cogs" aria-hidden="true"/>
-        </button>
+          <button
+            className={editorMode ? 'btn btn-filters' : 'hidden'}
+            onClick={::this.handleFiltersToggle}>
+            <i className="fa fa-cogs" aria-hidden="true"/>
+          </button>
 
-        <button
-          className={editorMode ? 'btn btn-share' : 'hidden'}
-          onClick={::this.handleShareClick}>
-          <i className="fa fa-share-alt" aria-hidden="true"/>
-        </button>
+          <button
+            className={editorMode ? 'btn btn-share' : 'hidden'}
+            onClick={::this.handleShareClick}>
+            <i className="fa fa-share-alt" aria-hidden="true"/>
+          </button>
 
-        <a
-          href={this.props.source.png}
-          download="canvas.png"
-          className={editorMode ? 'btn btn-save' : 'hidden'}>
-          <i className="fa fa-floppy-o" aria-hidden="true"/>
-        </a>
+          <a
+            href={this.props.source.png}
+            download="canvas.png"
+            className={editorMode ? 'btn btn-save' : 'hidden'}>
+            <i className="fa fa-floppy-o" aria-hidden="true"/>
+          </a>
+        </div>
 
         <div className={shareBlockVisible ? 'buttons-share' : 'buttons-share_hidden'}>
           <button className="btn btn-twitter">

@@ -31,7 +31,7 @@ $fa-font-path: "~font-awesome/fonts";
   transition: box-shadow 0.1s ease;
 
   &:active {
-    box-shadow: 0 0 0;
+    box-shadow: 0 0 0 $gray-base;
   }
 
   &:focus {
@@ -102,7 +102,7 @@ $fa-font-path: "~font-awesome/fonts";
 
   opacity: 1;
 
-  transform: translateY(0) rotate(0);
+  transform: translateY(0) rotate(0deg);
 
   transition: all 0.15s ease;
 
@@ -111,4 +111,24 @@ $fa-font-path: "~font-awesome/fonts";
     transform: translateY(100%) rotate(180deg);
 
   }
+}
+
+.header-buttons {
+  position: absolute;
+
+  height: 5rem;
+
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.footer-buttons {
+  position: absolute;
+
+  height: 5rem;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
