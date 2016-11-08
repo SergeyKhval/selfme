@@ -27,6 +27,12 @@ export function createStream() {
             payload: 'Could not find device camera'
           });
           break;
+        case 'ConstraintNotSatisfiedError':
+          dispatch({
+            type: 'ERROR',
+            payload: 'Could not satisfy provided constraints'
+          });
+          break;
         default:
           return;
       }
