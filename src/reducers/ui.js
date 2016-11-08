@@ -1,5 +1,6 @@
 const initialState = {
   editorMode: false,
+  shareBlockVisible: false,
   cameras: 0
 };
 
@@ -9,6 +10,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         editorMode: action.payload
+      };
+    case 'TOGGLE_SHARE_BLOCK':
+      return {
+        ...state,
+        shareBlockVisible: action.payload
       };
     case 'GET_CAMERAS_COUNT':
       return {

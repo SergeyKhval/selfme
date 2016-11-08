@@ -49,6 +49,11 @@ export function toggleEditorMode(mode) {
       type: 'TOGGLE_EDITOR_MODE',
       payload: mode
     });
+
+    dispatch({
+      type: 'TOGGLE_SHARE_BLOCK',
+      payload: false
+    });
   };
 }
 
@@ -71,7 +76,6 @@ export function setSource(canvas) {
 /**
  * get number of deivce cameras
  */
-
 export function getCamerasCount() {
   return dispatch => {
     navigator.mediaDevices.enumerateDevices()
@@ -81,5 +85,19 @@ export function getCamerasCount() {
           payload: devices.filter(d => d.kind === 'videoinput').length
         });
       });
+  };
+}
+
+/**
+ * Toggle block with share buttons
+ */
+export function toggleShareBlock() {
+  return (dispatch, getState) => {
+    const state = getState();
+
+    dispatch({
+      type: 'TOGGLE_SHARE_BLOCK',
+      payload: !state.uiReducer.shareBlockVisible
+    });
   };
 }

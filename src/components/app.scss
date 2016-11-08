@@ -12,12 +12,7 @@ $fa-font-path: "~font-awesome/fonts";
   display: none;
 }
 
-.button-shot,
-.button-save,
-.button-filters,
-.button-share,
-.button-switch,
-.button-back {
+.btn {
   font-size: 2rem;
   color: $gray-light;
 
@@ -25,8 +20,6 @@ $fa-font-path: "~font-awesome/fonts";
 
   position: absolute;
 
-  bottom: 20px;
-  right: 20px;
   width: 3rem;
   height: 3rem;
 
@@ -46,40 +39,76 @@ $fa-font-path: "~font-awesome/fonts";
   }
 }
 
-.button-switch {
-  background-color: rgba($gray-light, 0.15);
-
-  top: 20px;
-  bottom: auto;
+.btn-shot {
+  right: 20px;
+  bottom: 20px;
 
   z-index: 1;
 }
 
-.button-save {
+.btn-switch {
+  background-color: rgba($gray-light, 0.15);
+
+  top: 20px;
+  right: 20px;
+
+  z-index: 1;
+}
+
+.btn-save {
   color: $gray-light;
   text-decoration: none;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  right: 20px;
+  bottom: 20px;
 }
 
-.button-filters {
+.btn-filters {
   left: 20px;
-  right: auto;
+  bottom: 20px;
 }
 
-.button-share {
+.btn-share {
   left: 50%;
-  right: auto;
+  bottom: 20px;
 
   transform: translateX(-50%);
 }
 
-.button-back {
+.btn-back {
   background-color: rgba(white, 0.15);
 
   top: 20px;
   left: 20px;
-  bottom: auto;
+}
+
+.btn-twitter {
+  background-color: $brand-twitter;
+}
+
+.buttons-share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+
+  height: 3rem;
+  bottom: 80px;
+  width: 100%;
+
+  opacity: 1;
+
+  transform: translateY(0) rotate(0);
+
+  transition: all 0.15s ease;
+
+  &_hidden {
+    opacity: 0;
+    transform: translateY(100%) rotate(180deg);
+
+  }
 }

@@ -39,7 +39,7 @@ class AppComponent extends Component {
   }
 
   handleShareClick() {
-    console.log('clicked button to share'); // eslint-disable-line no-console
+    this.props.toggleShare();
   }
 
   handleFiltersToggle() {
@@ -62,7 +62,7 @@ class AppComponent extends Component {
 
   render() {
     const {error} = this.props.error;
-    const {editorMode, cameras} = this.props.ui;
+    const {editorMode, cameras, shareBlockVisible} = this.props.ui;
 
     const errorTemplate = error ? '<p>{error}</p>' : '';
 
@@ -71,13 +71,13 @@ class AppComponent extends Component {
         {errorTemplate}
 
         <button
-          className={editorMode ? 'button-back' : 'hidden'}
+          className={editorMode ? 'btn btn-back' : 'hidden'}
           onClick={::this.handleBackClick}>
           <i className="fa fa-undo" aria-hidden="true"/>
         </button>
 
         <button
-          className={(!editorMode && cameras > 1) ? 'button-switch' : 'hidden'}
+          className={(!editorMode && cameras > 1) ? 'btn btn-switch' : 'hidden'}
           onClick={this.handleCameraToggle}>
           <i className="fa fa-exchange" aria-hidden="true"/>
         </button>
@@ -87,28 +87,34 @@ class AppComponent extends Component {
 
         <button
           onClick={::this.handleShotClick}
-          className={editorMode ? 'hidden' : 'button-shot'}>
+          className={editorMode ? 'hidden' : 'btn btn-shot'}>
           <i className="fa fa-camera"/>
         </button>
 
         <button
-          className={editorMode ? 'button-filters' : 'hidden'}
-          onClick={this.handleFiltersToggle}>
+          className={editorMode ? 'btn btn-filters' : 'hidden'}
+          onClick={::this.handleFiltersToggle}>
           <i className="fa fa-cogs" aria-hidden="true"/>
         </button>
 
         <button
-          className={editorMode ? 'button-share' : 'hidden'}
-          onClick={this.handleShareClick}>
+          className={editorMode ? 'btn btn-share' : 'hidden'}
+          onClick={::this.handleShareClick}>
           <i className="fa fa-share-alt" aria-hidden="true"/>
         </button>
 
         <a
           href={this.props.source.png}
           download="canvas.png"
-          className={editorMode ? 'button-save' : 'hidden'}>
+          className={editorMode ? 'btn btn-save' : 'hidden'}>
           <i className="fa fa-floppy-o" aria-hidden="true"/>
         </a>
+
+        <div className={shareBlockVisible ? 'buttons-share' : 'buttons-share_hidden'}>
+          <button className="btn btn-twitter">
+            <i className="fa fa-twitter" aria-hidden="true"/>
+          </button>
+        </div>
 
 
       </div>
@@ -117,13 +123,14 @@ class AppComponent extends Component {
 }
 
 AppComponent.propTypes = {
-  ui: PropTypes.object,
+  ui: PropTypes.object.isRequired,
   stream: PropTypes.object.isRequired,
-  source: PropTypes.object,
+  source: PropTypes.object.isRequired,
   error: PropTypes.object,
-  filter: PropTypes.object,
-  toggleEditor: PropTypes.func,
-  setSource: PropTypes.func
+  filter: PropTypes.object.isRequired,
+  toggleEditor: PropTypes.func.isRequired,
+  toggleShare: PropTypes.func.isRequired,
+  setSource: PropTypes.func.isRequired
 };
 
 export default AppComponent;
