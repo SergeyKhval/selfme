@@ -11,6 +11,7 @@ import './app.scss';
 
 class App extends Component {
   componentWillMount() {
+    this.props.actions.getCamerasCount();
     this.props.actions.createStream();
   }
 

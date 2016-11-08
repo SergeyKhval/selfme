@@ -67,3 +67,19 @@ export function setSource(canvas) {
     });
   };
 }
+
+/**
+ * get number of deivce cameras
+ */
+
+export function getCamerasCount() {
+  return dispatch => {
+    navigator.mediaDevices.enumerateDevices()
+      .then(devices => {
+        dispatch({
+          type: 'GET_CAMERAS_COUNT',
+          payload: devices.filter(d => d.kind === 'videoinput').length
+        });
+      });
+  };
+}

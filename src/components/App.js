@@ -34,6 +34,18 @@ class AppComponent extends Component {
     this.props.toggleEditor(false);
   }
 
+  handleCameraToggle() {
+    console.log('toggled camera'); // eslint-disable-line no-console
+  }
+
+  handleShareClick() {
+    console.log('clicked button to share'); // eslint-disable-line no-console
+  }
+
+  handleFiltersToggle() {
+    console.log('toggle filters pane'); // eslint-disable-line no-console
+  }
+
   handleAddFilterClick() {
     const img = new Image();
     const canvas = document.querySelector('canvas');
@@ -50,7 +62,7 @@ class AppComponent extends Component {
 
   render() {
     const {error} = this.props.error;
-    const {editorMode} = this.props.ui;
+    const {editorMode, cameras} = this.props.ui;
 
     const errorTemplate = error ? '<p>{error}</p>' : '';
 
@@ -64,6 +76,12 @@ class AppComponent extends Component {
           <i className="fa fa-undo" aria-hidden="true"/>
         </button>
 
+        <button
+          className={(!editorMode && cameras > 1) ? 'button-switch' : 'hidden'}
+          onClick={this.handleCameraToggle}>
+          <i className="fa fa-exchange" aria-hidden="true"/>
+        </button>
+
         <video autoPlay className={editorMode ? 'hidden' : ''}/>
         <canvas className={editorMode ? '' : 'hidden'}/>
 
@@ -73,12 +91,26 @@ class AppComponent extends Component {
           <i className="fa fa-camera"/>
         </button>
 
+        <button
+          className={editorMode ? 'button-filters' : 'hidden'}
+          onClick={this.handleFiltersToggle}>
+          <i className="fa fa-cogs" aria-hidden="true"/>
+        </button>
+
+        <button
+          className={editorMode ? 'button-share' : 'hidden'}
+          onClick={this.handleShareClick}>
+          <i className="fa fa-share-alt" aria-hidden="true"/>
+        </button>
+
         <a
           href={this.props.source.png}
           download="canvas.png"
           className={editorMode ? 'button-save' : 'hidden'}>
           <i className="fa fa-floppy-o" aria-hidden="true"/>
         </a>
+
+
       </div>
     );
   }

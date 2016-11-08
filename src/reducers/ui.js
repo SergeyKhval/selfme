@@ -1,5 +1,6 @@
 const initialState = {
-  editorMode: false
+  editorMode: false,
+  cameras: 0
 };
 
 export default function (state = initialState, action) {
@@ -8,6 +9,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         editorMode: action.payload
+      };
+    case 'GET_CAMERAS_COUNT':
+      return {
+        ...state,
+        cameras: action.payload
       };
     default:
       return {
