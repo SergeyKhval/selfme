@@ -5,7 +5,12 @@ export default function (state = initialState, action) {
     case 'SET_SOURCE':
       return {
         ...state,
-        png: action.payload.png
+        original: action.payload
+      };
+    case 'SET_SOURCE_FILTERED':
+      return {
+        ...state,
+        filtered: action.payload
       };
     default:
       return {

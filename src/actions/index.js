@@ -1,3 +1,7 @@
+/**
+ * Capture video from webcam or generate error
+ * @returns {function(*)}
+ */
 export function createStream() {
   const constraints = {
     audio: false,
@@ -13,6 +17,11 @@ export function createStream() {
 
   return dispatch => {
     function handleSuccess(stream) {
+      dispatch({
+        type: 'ERROR',
+        payload: ''
+      });
+
       dispatch({
         type: 'SET_STREAM',
         payload: stream
@@ -60,21 +69,25 @@ export function toggleEditorMode(mode) {
       type: 'TOGGLE_SHARE_BLOCK',
       payload: false
     });
+
+    dispatch({
+      type: 'TOGGLE_FILTERS',
+      payload: false
+    });
   };
 }
 
 /**
  * Store reference to image taken with camera
- * @param source
+ * @param {Object | Boolean} canvas - canvas DOM element
+ * @param {Boolean} filtered - save filtered or original image
  * @returns {function(*)}
  */
-export function setSource(canvas) {
+export function setSource(canvas, filtered = false) {
   return dispatch => {
     dispatch({
-      type: 'SET_SOURCE',
-      payload: {
-        png: canvas.toDataURL('image/png')
-      }
+      type: filtered ? 'SET_SOURCE_FILTERED' : 'SET_SOURCE',
+      payload: canvas ? canvas.toDataURL('image/png') : false
     });
   };
 }
@@ -104,6 +117,20 @@ export function toggleShareBlock() {
     dispatch({
       type: 'TOGGLE_SHARE_BLOCK',
       payload: !state.uiReducer.shareBlockVisible
+    });
+  };
+}
+
+/**
+ * Toggle filters pane
+ */
+export function toggleFilters() {
+  return (dispatch, getState) => {
+    const state = getState();
+
+    dispatch({
+      type: 'TOGGLE_FILTERS',
+      payload: !state.uiReducer.filtersVisible
     });
   };
 }

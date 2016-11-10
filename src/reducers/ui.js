@@ -1,6 +1,7 @@
 const initialState = {
   editorMode: false,
   shareBlockVisible: false,
+  filtersVisible: false,
   cameras: 0
 };
 
@@ -15,6 +16,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         shareBlockVisible: action.payload
+      };
+    case 'TOGGLE_FILTERS':
+      return {
+        ...state,
+        filtersVisible: action.payload
       };
     case 'GET_CAMERAS_COUNT':
       return {
