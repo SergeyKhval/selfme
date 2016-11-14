@@ -1,3 +1,5 @@
+import {REHYDRATE} from 'redux-persist/constants';
+
 const initialState = {
   editorMode: false,
   shareBlockVisible: false,
@@ -27,6 +29,14 @@ export default function (state = initialState, action) {
         ...state,
         cameras: action.payload
       };
+    case REHYDRATE:
+      if (action.payload.uiReducer) {
+        return {
+          ...state,
+          ...action.payload.uiReducer
+        };
+      }
+      return state;
     default:
       return {
         ...state
