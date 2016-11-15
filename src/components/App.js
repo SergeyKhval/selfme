@@ -35,12 +35,10 @@ class AppComponent extends Component {
   }
 
   handleCameraToggle() {
-    console.log('toggled camera'); // eslint-disable-line no-console
+    this.props.toggleCamera();
+    this.props.createStream();
   }
 
-  handleShareClick() {
-    this.props.toggleShare();
-  }
 
   handleFiltersToggle() {
     this.props.toggleFilters();
@@ -80,7 +78,8 @@ class AppComponent extends Component {
 
   render() {
     const {error} = this.props.error;
-    const {editorMode, cameras, shareBlockVisible, filtersVisible} = this.props.ui;
+    const {editorMode, filtersVisible} = this.props.ui;
+    const {devices} = this.props.stream;
 
     const errorTemplate = error ? '<p>{error}</p>' : '';
 
@@ -96,8 +95,8 @@ class AppComponent extends Component {
           </button>
 
           <button
-            className={(!editorMode && cameras > 1) ? 'btn btn-switch' : 'hidden'}
-            onClick={this.handleCameraToggle}>
+            className={(!editorMode && devices.length > 1) ? 'btn btn-switch' : 'hidden'}
+            onClick={::this.handleCameraToggle}>
             <i className="fa fa-exchange" aria-hidden="true"/>
           </button>
         </div>
@@ -118,24 +117,12 @@ class AppComponent extends Component {
             <i className="fa fa-cogs" aria-hidden="true"/>
           </button>
 
-          <button
-            className={editorMode ? 'btn btn-share' : 'hidden'}
-            onClick={::this.handleShareClick}>
-            <i className="fa fa-share-alt" aria-hidden="true"/>
-          </button>
-
           <a
             href={this.props.source.filtered || this.props.source.original}
             download="canvas.png"
             className={editorMode ? 'btn btn-save' : 'hidden'}>
             <i className="fa fa-floppy-o" aria-hidden="true"/>
           </a>
-        </div>
-
-        <div className={shareBlockVisible ? 'buttons-share' : 'buttons-share_hidden'}>
-          <button className="btn btn-twitter">
-            <i className="fa fa-twitter" aria-hidden="true"/>
-          </button>
         </div>
 
         <div className={filtersVisible ? 'filters-pane filters-pane_visible' : 'filters-pane'}>
@@ -232,8 +219,9 @@ AppComponent.propTypes = {
   filter: PropTypes.object.isRequired,
   toggleEditor: PropTypes.func.isRequired,
   toggleFilters: PropTypes.func.isRequired,
-  toggleShare: PropTypes.func.isRequired,
-  setSource: PropTypes.func.isRequired
+  toggleCamera: PropTypes.func.isRequired,
+  setSource: PropTypes.func.isRequired,
+  createStream: PropTypes.func.isRequired
 };
 
 export default AppComponent;

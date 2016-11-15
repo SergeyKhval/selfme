@@ -20,7 +20,13 @@ class App extends Component {
   }
 
   render() {
-    const {toggleEditorMode, setSource, toggleShareBlock, toggleFilters} = this.props.actions;
+    const {
+      toggleEditorMode,
+      setSource,
+      toggleFilters,
+      toggleCamera,
+      createStream
+    } = this.props.actions;
 
     return (<Main
       stream={this.props.stream}
@@ -29,8 +35,9 @@ class App extends Component {
       ui={this.props.ui}
       filter={this.props.filter}
       toggleEditor={toggleEditorMode}
-      toggleShare={toggleShareBlock}
       toggleFilters={toggleFilters}
+      toggleCamera={toggleCamera}
+      createStream={createStream}
       setSource={setSource}
     />);
   }

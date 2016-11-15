@@ -3,19 +3,7 @@
  * @returns {function(*)}
  */
 export function createStream() {
-  const constraints = {
-    audio: false,
-    video: {
-      width: {
-        exact: window.innerWidth
-      },
-      height: {
-        exact: window.innerHeight
-      }
-    }
-  };
-
-  return dispatch => {
+  return (dispatch, getState) => {
     function handleSuccess(stream) {
       dispatch({
         type: 'ERROR',
@@ -45,6 +33,31 @@ export function createStream() {
         default:
           return;
       }
+    }
+
+    const state = getState();
+
+    const {activeDeviceIndex} = state.uiReducer;
+    const {devices} = state.streamReducer;
+    const source = devices[activeDeviceIndex] ? devices[activeDeviceIndex].deviceId : undefined;
+
+    const constraints = {
+      audio: false,
+      video: {
+        width: {
+          exact: window.innerWidth
+        },
+        height: {
+          exact: window.innerHeight
+        },
+        deviceId: source ? {exact: source} : undefined
+      }
+    };
+
+    if (state.streamReducer.stream) {
+      state.streamReducer.stream.getTracks().forEach(track => {
+        track.stop();
+      });
     }
 
     navigator.mediaDevices.getUserMedia(constraints)
@@ -100,24 +113,10 @@ export function getCamerasCount() {
     navigator.mediaDevices.enumerateDevices()
       .then(devices => {
         dispatch({
-          type: 'GET_CAMERAS_COUNT',
-          payload: devices.filter(d => d.kind === 'videoinput').length
+          type: 'GET_VIDEO_DEVICES',
+          payload: devices.filter(d => d.kind === 'videoinput')
         });
       });
-  };
-}
-
-/**
- * Toggle block with share buttons
- */
-export function toggleShareBlock() {
-  return (dispatch, getState) => {
-    const state = getState();
-
-    dispatch({
-      type: 'TOGGLE_SHARE_BLOCK',
-      payload: !state.uiReducer.shareBlockVisible
-    });
   };
 }
 
@@ -131,6 +130,24 @@ export function toggleFilters() {
     dispatch({
       type: 'TOGGLE_FILTERS',
       payload: !state.uiReducer.filtersVisible
+    });
+  };
+}
+
+/**
+ * Switch between device cameras
+ */
+export function toggleCamera() {
+  return (dispatch, getState) => {
+    const state = getState();
+
+    const {activeDeviceIndex} = state.uiReducer;
+
+    const newIndex = activeDeviceIndex === 0 ? 1 : 0;
+
+    dispatch({
+      type: 'TOGGLE_CAMERA',
+      payload: newIndex
     });
   };
 }

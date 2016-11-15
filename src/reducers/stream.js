@@ -1,4 +1,6 @@
-const initialState = {};
+const initialState = {
+  devices: []
+};
 
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -6,6 +8,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         stream: action.payload
+      };
+    case 'GET_VIDEO_DEVICES':
+      return {
+        ...state,
+        devices: action.payload
       };
     default:
       return {

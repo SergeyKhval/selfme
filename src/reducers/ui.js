@@ -2,7 +2,7 @@ const initialState = {
   editorMode: false,
   shareBlockVisible: false,
   filtersVisible: false,
-  cameras: 0
+  activeDeviceIndex: 0
 };
 
 export default function (state = initialState, action) {
@@ -22,10 +22,10 @@ export default function (state = initialState, action) {
         ...state,
         filtersVisible: action.payload
       };
-    case 'GET_CAMERAS_COUNT':
+    case 'TOGGLE_CAMERA':
       return {
         ...state,
-        cameras: action.payload
+        activeDeviceIndex: action.payload
       };
     default:
       return {
