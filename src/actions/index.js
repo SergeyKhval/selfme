@@ -2,8 +2,26 @@
  * Capture video from webcam or generate error
  * @returns {function(*)}
  */
-export function createStream() {
-  return (dispatch, getState) => {
+function createStreamFunc() {
+  const mediaQueries = {
+    tablet: '(min-width: 768px)'
+  };
+
+  const mql = window.matchMedia(mediaQueries.tablet);
+
+  let width;
+  let height;
+
+  if (mql.matches) {
+    width = {min: 640};
+    height = {min: 480};
+  } else {
+    width = {exact: window.innerWidth};
+    height = {exact: window.innerHeight};
+  }
+
+
+  return () => (dispatch, getState) => {
     function handleSuccess(stream) {
       dispatch({
         type: 'ERROR',
@@ -31,7 +49,10 @@ export function createStream() {
           });
           break;
         default:
-          return;
+          dispatch({
+            type: 'ERROR',
+            payload: 'An error occurred while accessing media device'
+          });
       }
     }
 
@@ -44,14 +65,10 @@ export function createStream() {
     const constraints = {
       audio: false,
       video: {
-        width: {
-          exact: window.innerWidth
-        },
-        height: {
-          exact: window.innerHeight
-        },
-        deviceId: source ? {exact: source} : undefined
-      }
+        width,
+        height
+      },
+      deviceId: source ? {exact: source} : undefined
     };
 
     if (state.streamReducer.stream) {
@@ -151,3 +168,14 @@ export function toggleCamera() {
     });
   };
 }
+
+const actions = {
+  createStream: createStreamFunc(),
+  toggleCamera,
+  toggleEditorMode,
+  toggleFilters,
+  setSource,
+  getCamerasCount
+};
+
+export default actions;

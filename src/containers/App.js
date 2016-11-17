@@ -2,10 +2,10 @@ import React, {
   Component,
   PropTypes
 } from 'react';
-import * as actions from '../actions/';
+import actions from '../actions/';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import Main from '../components/App';
+import Main from '../components/app';
 
 import './app.scss';
 
