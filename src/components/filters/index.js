@@ -41,7 +41,9 @@ class Filters extends Component {
     const {filtersVisible} = this.props;
 
     return (
-      <div className={filtersVisible ? 'filters-pane filters-pane_visible' : 'filters-pane'}>
+      <div
+        className={filtersVisible ? 'filters-pane filters-pane_visible' : 'filters-pane'}
+        style={{width: `${this.props.width}px`}}>
         <div className="filters-pane__header">
           <button className="filters-btn" onClick={::this.resetFilters}>
             Reset Filters
@@ -129,7 +131,8 @@ Filters.propTypes = {
   filter: PropTypes.object.isRequired,
   setSource: PropTypes.func.isRequired,
   toggleFilters: PropTypes.func.isRequired,
-  filtersVisible: PropTypes.bool.isRequired
+  filtersVisible: PropTypes.bool.isRequired,
+  width: PropTypes.number.isRequired
 };
 
 export default Filters;

@@ -2,7 +2,11 @@ const initialState = {
   editorMode: false,
   shareBlockVisible: false,
   filtersVisible: false,
-  activeDeviceIndex: 0
+  activeDeviceIndex: 0,
+  videoDimensions: {
+    width: 0,
+    height: 0
+  }
 };
 
 export default function (state = initialState, action) {
@@ -26,6 +30,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         activeDeviceIndex: action.payload
+      };
+    case 'VIDEO_DIMENSIONS':
+      return {
+        ...state,
+        videoDimensions: action.payload
       };
     default:
       return {

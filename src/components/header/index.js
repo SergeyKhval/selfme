@@ -13,7 +13,7 @@ class Header extends Component {
   render() {
     const {editorMode, devices} = this.props;
     return (
-      <div className="header-buttons">
+      <div className="header-buttons" style={{width: `${this.props.width}px`}}>
         <button
           className={editorMode ? 'btn btn-back' : 'hidden'}
           onClick={::this.handleBackClick}>
@@ -36,6 +36,7 @@ Header.propTypes = {
   toggleEditor: PropTypes.func.isRequired,
   toggleCamera: PropTypes.func.isRequired,
   createStream: PropTypes.func.isRequired,
+  width: PropTypes.number.isRequired
 };
 
 export default Header;

@@ -2,30 +2,37 @@
  * Capture video from webcam or generate error
  * @returns {function(*)}
  */
-function createStreamFunc() {
+function createStream(w, h) {
   const mediaQueries = {
-    tablet: '(min-width: 768px)'
+    tablet: '(min-width: 768px)',
   };
 
-  const mql = window.matchMedia(mediaQueries.tablet);
+  const tablet = window.matchMedia(mediaQueries.tablet);
 
   let width;
   let height;
 
-  if (mql.matches) {
-    width = {min: 640};
-    height = {min: 480};
+  if (tablet.matches) {
+    width = w !== undefined ? {exact: w} : {exact: 640};
+    height = h !== undefined ? {exact: h} : {exact: 480};
   } else {
     width = {exact: window.innerWidth};
     height = {exact: window.innerHeight};
   }
 
-
-  return () => (dispatch, getState) => {
+  return (dispatch, getState) => {
     function handleSuccess(stream) {
       dispatch({
         type: 'ERROR',
         payload: ''
+      });
+
+      dispatch({
+        type: 'VIDEO_DIMENSIONS',
+        payload: {
+          width: width.exact,
+          height: height.exact
+        }
       });
 
       dispatch({
@@ -170,7 +177,7 @@ export function toggleCamera() {
 }
 
 const actions = {
-  createStream: createStreamFunc(),
+  createStream,
   toggleCamera,
   toggleEditorMode,
   toggleFilters,

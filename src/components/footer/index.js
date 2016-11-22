@@ -25,7 +25,7 @@ class Footer extends Component {
     const {editorMode, source} = this.props;
 
     return (
-      <div className="footer-buttons">
+      <div className="footer-buttons" style={{width: `${this.props.width}px`}}>
         <button
           onClick={::this.handleShotClick}
           className={editorMode ? 'hidden' : 'btn btn-shot'}>
@@ -54,7 +54,8 @@ Footer.propTypes = {
   source: PropTypes.object.isRequired,
   toggleEditor: PropTypes.func.isRequired,
   setSource: PropTypes.func.isRequired,
-  toggleFilters: PropTypes.func.isRequired
+  toggleFilters: PropTypes.func.isRequired,
+  width: PropTypes.number.isRequired
 };
 
 export default Footer;

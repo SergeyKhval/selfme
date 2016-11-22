@@ -19,9 +19,15 @@ class AppComponent extends Component {
     }
   }
 
+  handleChangeResolution(e) {
+    const {width, height} = e.target.dataset;
+    this.props.toggleEditor(false);
+    this.props.createStream(width, height);
+  }
+
   render() {
     const {error} = this.props.error;
-    const {editorMode, filtersVisible} = this.props.ui;
+    const {editorMode, filtersVisible, videoDimensions} = this.props.ui;
     const {devices} = this.props.stream;
     const {filter} = this.props.filter;
     const {
@@ -39,33 +45,51 @@ class AppComponent extends Component {
       <div className="container">
         {errorTemplate}
 
-        <Header
-          editorMode={editorMode}
-          devices={devices}
-          toggleEditor={toggleEditor}
-          toggleCamera={toggleCamera}
-          createStream={createStream}
-        />
 
-        <video autoPlay className={editorMode ? 'hidden' : ''}/>
-        <canvas className={editorMode ? '' : 'hidden'}/>
+        <div className="resolution-settings">
+          <button
+            data-width="640"
+            data-height="480"
+            onClick={::this.handleChangeResolution}>Medium
+          </button>
+          <button
+            data-width="1280"
+            data-height="720"
+            onClick={::this.handleChangeResolution}>HD
+          </button>
+        </div>
 
-        <Footer
-          editorMode={editorMode}
-          source={source}
-          setSource={setSource}
-          toggleEditor={toggleEditor}
-          toggleFilters={toggleFilters}
-        />
+        <div className="stage">
+          <Header
+            editorMode={editorMode}
+            devices={devices}
+            toggleEditor={toggleEditor}
+            toggleCamera={toggleCamera}
+            createStream={createStream}
+            width={videoDimensions.width}
+          />
 
-        <Filters
-          filter={filter}
-          source={source}
-          setSource={setSource}
-          filtersVisible={filtersVisible}
-          toggleFilters={toggleFilters}
-        />
+          <video autoPlay className={editorMode ? 'video_hidden' : 'video'}/>
+          <canvas className={editorMode ? 'canvas' : 'canvas_hidden'}/>
 
+          <Footer
+            editorMode={editorMode}
+            source={source}
+            setSource={setSource}
+            toggleEditor={toggleEditor}
+            toggleFilters={toggleFilters}
+            width={videoDimensions.width}
+          />
+
+          <Filters
+            filter={filter}
+            source={source}
+            setSource={setSource}
+            filtersVisible={filtersVisible}
+            toggleFilters={toggleFilters}
+            width={videoDimensions.width}
+          />
+        </div>
       </div>
     );
   }
