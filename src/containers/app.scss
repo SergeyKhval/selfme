@@ -31,15 +31,20 @@ body {
 
   background-color: rgba($brand-info, 0.45);
 
-  position: absolute;
+  position: relative;
+  display: inline-block;
 
   width: 3rem;
   height: 3rem;
+
+  margin-left: 2rem;
 
   border-radius: 50%;
   border: none;
 
   box-shadow: 5px 5px 10px $gray-dark;
+
+  cursor: pointer;
 
   transition: box-shadow 0.1s ease;
 
@@ -51,6 +56,10 @@ body {
     outline: none;
   }
 
+  &:first-child {
+    margin-left: 0;
+  }
+
   &_flat {
     background: none;
 
@@ -58,79 +67,28 @@ body {
 
     box-shadow: none;
   }
-}
 
-.btn-shot {
-  right: 20px;
-  bottom: 20px;
+  &_shot {
+    z-index: 1;
+  }
 
-  z-index: 1;
-}
+  &_switch {
+    background-color: rgba($gray-light, 0.15);
 
-.btn-switch {
-  background-color: rgba($gray-light, 0.15);
+    z-index: 1;
+  }
 
-  top: 20px;
-  right: 20px;
+  &_save {
+    color: $gray-light;
+    text-decoration: none;
 
-  z-index: 1;
-}
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.btn-save {
-  color: $gray-light;
-  text-decoration: none;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  right: 20px;
-  bottom: 20px;
-}
-
-.btn-filters {
-  left: 20px;
-  bottom: 20px;
-}
-
-.btn-share {
-  left: 50%;
-  bottom: 20px;
-
-  transform: translateX(-50%);
-}
-
-.btn-back {
-  background-color: rgba(white, 0.15);
-
-  top: 20px;
-  left: 20px;
-}
-
-.btn-twitter {
-  background-color: $brand-twitter;
-}
-
-.buttons-share {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-
-  height: 3rem;
-  bottom: 80px;
-  width: 100%;
-
-  opacity: 1;
-
-  transform: translateY(0) rotate(0deg);
-
-  transition: all 0.15s ease;
-
-  &_hidden {
-    opacity: 0;
-    transform: translateY(100%) rotate(180deg);
-
+  &_resolution {
+    display: none;
   }
 }
 
@@ -145,13 +103,34 @@ body {
 }
 
 .footer-buttons {
+  text-align: right;
+
+  display: flex;
   position: absolute;
 
-  height: 5rem;
+  height: 4rem;
 
   bottom: 0;
   left: 0;
   right: 0;
+
+  &__left {
+    text-align: left;
+
+    flex-grow: 1;
+    flex-basis: 50%;
+
+    padding-left: 1rem;
+  }
+
+  &__right {
+    text-align: right;
+
+    flex-grow: 1;
+    flex-basis: 50%;
+
+    padding-right: 1rem;
+  }
 }
 
 .filters-pane {
@@ -161,7 +140,7 @@ body {
   display: flex;
   flex-direction: column;
 
-  height: 25vh;
+  height: 8rem;
   bottom: 0;
   right: 0;
   left: 0;
@@ -198,6 +177,7 @@ body {
   color: $gray-light;
   font-size: 1.5rem;
   text-shadow: 0 1px $gray-base, 1px 0 $gray-base, -1px 0 $gray-base, 0 -1px $gray-base;
+  white-space: nowrap;
 
   background-color: transparent;
 
@@ -206,6 +186,13 @@ body {
 
   border: 2px solid $gray-light;
   border-radius: 5px;
+
+  &_active {
+    color: $gray-dark;
+    text-shadow: none;
+
+    background-color: $gray-light;
+  }
 }
 
 .video {
@@ -229,15 +216,16 @@ body {
     background: $gray-dark;
   }
 
+  .app {
+    padding-top: 2rem;
+  }
+
   .stage {
     position: relative;
     overflow: hidden;
-
-    padding: $stage-top-padding 0 0 0;
   }
 
   .header-buttons {
-    top: $stage-top-padding;
     left: 50%;
 
     transform: translateX(-50%);
@@ -251,6 +239,8 @@ body {
   }
 
   .filters-pane {
+    height: 9rem;
+
     bottom: 0;
     left: 50%;
 
@@ -270,7 +260,11 @@ body {
 }
 
 @media (min-width: 1280px) {
-  .resolution-settings {
-    display: block;
+  .btn {
+    &_resolution {
+      font-size: 1.5rem;
+
+      display: inline-block;
+    }
   }
 }

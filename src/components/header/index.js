@@ -1,10 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
 class Header extends Component {
-  handleBackClick() {
-    this.props.toggleEditor(false);
-  }
-
   handleCameraToggle() {
     this.props.toggleCamera();
     this.props.createStream();
@@ -15,13 +11,7 @@ class Header extends Component {
     return (
       <div className="header-buttons" style={{width: `${this.props.width}px`}}>
         <button
-          className={editorMode ? 'btn btn-back' : 'hidden'}
-          onClick={::this.handleBackClick}>
-          <i className="fa fa-undo" aria-hidden="true"/>
-        </button>
-
-        <button
-          className={(!editorMode && devices.length > 1) ? 'btn btn-switch' : 'hidden'}
+          className={(!editorMode && devices.length > 1) ? 'btn btn_switch' : 'hidden'}
           onClick={::this.handleCameraToggle}>
           <i className="fa fa-exchange" aria-hidden="true"/>
         </button>

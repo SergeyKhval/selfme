@@ -16,9 +16,18 @@ class Footer extends Component {
     this.props.setSource(canvas);
   }
 
+  handleBackClick() {
+    this.props.toggleEditor(false);
+  }
 
   handleFiltersToggle() {
     this.props.toggleFilters();
+  }
+
+  handleChangeResolution(e) {
+    const {width, height} = e.target.dataset;
+    this.props.toggleEditor(false);
+    this.props.createStream(width, height);
   }
 
   render() {
@@ -26,24 +35,50 @@ class Footer extends Component {
 
     return (
       <div className="footer-buttons" style={{width: `${this.props.width}px`}}>
-        <button
-          onClick={::this.handleShotClick}
-          className={editorMode ? 'hidden' : 'btn btn-shot'}>
-          <i className="fa fa-camera"/>
-        </button>
+        <div className="footer-buttons__left">
+          <button
+            className={editorMode ? 'btn btn_filters' : 'hidden'}
+            onClick={::this.handleFiltersToggle}>
+            <i className="fa fa-cogs" aria-hidden="true"/>
+          </button>
 
-        <button
-          className={editorMode ? 'btn btn-filters' : 'hidden'}
-          onClick={::this.handleFiltersToggle}>
-          <i className="fa fa-cogs" aria-hidden="true"/>
-        </button>
+          <a
+            href={source.filtered || source.original}
+            download={`${uuid.v4()}.png`}
+            className={editorMode ? 'btn btn_save' : 'hidden'}>
+            <i className="fa fa-floppy-o" aria-hidden="true"/>
+          </a>
+        </div>
 
-        <a
-          href={source.filtered || source.original}
-          download={`${uuid.v4()}.png`}
-          className={editorMode ? 'btn btn-save' : 'hidden'}>
-          <i className="fa fa-floppy-o" aria-hidden="true"/>
-        </a>
+        <div className="footer-buttons__right">
+          <button
+            className="btn btn_resolution"
+            data-width="640"
+            data-height="480"
+            onClick={::this.handleChangeResolution}>SD
+          </button>
+
+          <button
+            className="btn btn_resolution"
+            data-width="1280"
+            data-height="720"
+            onClick={::this.handleChangeResolution}>HD
+          </button>
+
+
+          <button
+            onClick={::this.handleShotClick}
+            className={editorMode ? 'hidden' : 'btn btn_shot'}>
+            <i className="fa fa-camera"/>
+          </button>
+
+          <button
+            className={editorMode ? 'btn btn_back' : 'hidden'}
+            onClick={::this.handleBackClick}>
+            <i className="fa fa-undo" aria-hidden="true"/>
+          </button>
+        </div>
+
       </div>
     );
   }
@@ -54,6 +89,7 @@ Footer.propTypes = {
   source: PropTypes.object.isRequired,
   toggleEditor: PropTypes.func.isRequired,
   setSource: PropTypes.func.isRequired,
+  createStream: PropTypes.func.isRequired,
   toggleFilters: PropTypes.func.isRequired,
   width: PropTypes.number.isRequired
 };

@@ -19,12 +19,6 @@ class AppComponent extends Component {
     }
   }
 
-  handleChangeResolution(e) {
-    const {width, height} = e.target.dataset;
-    this.props.toggleEditor(false);
-    this.props.createStream(width, height);
-  }
-
   render() {
     const {error} = this.props.error;
     const {editorMode, filtersVisible, videoDimensions} = this.props.ui;
@@ -44,20 +38,6 @@ class AppComponent extends Component {
     return (
       <div className="container">
         {errorTemplate}
-
-
-        <div className="resolution-settings">
-          <button
-            data-width="640"
-            data-height="480"
-            onClick={::this.handleChangeResolution}>Medium
-          </button>
-          <button
-            data-width="1280"
-            data-height="720"
-            onClick={::this.handleChangeResolution}>HD
-          </button>
-        </div>
 
         <div className="stage">
           <Header
@@ -79,6 +59,7 @@ class AppComponent extends Component {
             toggleEditor={toggleEditor}
             toggleFilters={toggleFilters}
             width={videoDimensions.width}
+            createStream={createStream}
           />
 
           <Filters
