@@ -25,7 +25,7 @@ class WebpackDistConfig extends WebpackBaseConfig {
         new OfflinePlugin({
           publicPath: '/selfme/',
           caches: {
-            main: ['index.html', 'app.js']
+            main: ['index.html', 'app.js', ':rest:']
           },
           ServiceWorker: {
             events: true
