@@ -1,8 +1,19 @@
 var __wpo = {
-  "assets": {"main": ["./", "./app.js"], "additional": [], "optional": []},
-  "hashesMap": {"ee5722287a2647b46856d4eb5fa745e2": "./app.js"},
+  "assets": {
+    "main": ["./674f50d287a8c48dc19ba404d20fe713.eot", "./912ec66d7572ff821749319396470bde.svg", "./b06871f281fee6b241d60582ae9369b9.ttf", "./af7ae505a9eed503f8b8e6982036873e.woff2", "./fee66e712a8a08eef5805a46892932ad.woff", "./app.js", "index.html"],
+    "additional": [],
+    "optional": []
+  },
+  "hashesMap": {
+    "674f50d287a8c48dc19ba404d20fe713": "./674f50d287a8c48dc19ba404d20fe713.eot",
+    "912ec66d7572ff821749319396470bde": "./912ec66d7572ff821749319396470bde.svg",
+    "b06871f281fee6b241d60582ae9369b9": "./b06871f281fee6b241d60582ae9369b9.ttf",
+    "af7ae505a9eed503f8b8e6982036873e": "./af7ae505a9eed503f8b8e6982036873e.woff2",
+    "fee66e712a8a08eef5805a46892932ad": "./fee66e712a8a08eef5805a46892932ad.woff",
+    "8c494258cd1f29ff8ef58e7528f73347": "./app.js"
+  },
   "strategy": "all",
-  "version": "2016-11-22 23:11:43",
+  "version": "2016-11-23 23:46:01",
   "name": "webpack-offline",
   "relativePaths": true
 };
@@ -28,7 +39,7 @@ var __wpo = {
     return e.d(t, "a", t), t
   }, e.o = function (n, e) {
     return Object.prototype.hasOwnProperty.call(n, e)
-  }, e.p = "/selfme/", e(e.s = 2)
+  }, e.p = "./assets/", e(e.s = 2)
 }([function (n, e) {
 }, function (n, e) {
   "use strict"
