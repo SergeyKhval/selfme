@@ -1,12 +1,15 @@
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import rootReducer from '../reducers';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
+import {persistStore, autoRehydrate} from 'redux-persist';
+
 
 function reduxStore(initialState) {
   const logger = createLogger();
-  const middleWare = applyMiddleware(thunk, logger);
-  const store = createStore(rootReducer, initialState, middleWare);
+  const enhancers = compose(autoRehydrate(),
+    applyMiddleware(thunk, logger));
+  const store = createStore(rootReducer, initialState, enhancers);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
@@ -17,6 +20,8 @@ function reduxStore(initialState) {
       store.replaceReducer(nextReducer);
     });
   }
+
+  persistStore(store);
 
   return store;
 }

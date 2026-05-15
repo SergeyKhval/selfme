@@ -1,3 +1,5 @@
+import {REHYDRATE} from 'redux-persist/constants';
+
 const initialState = {};
 
 export default function (state = initialState, action) {
@@ -12,6 +14,14 @@ export default function (state = initialState, action) {
         ...state,
         filtered: action.payload
       };
+    case REHYDRATE:
+      if (action.payload.sourceReducer) {
+        return {
+          ...state,
+          ...action.payload.sourceReducer
+        };
+      }
+      return state;
     default:
       return {
         ...state
